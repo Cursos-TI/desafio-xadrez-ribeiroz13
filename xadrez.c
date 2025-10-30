@@ -1,32 +1,68 @@
 #include <stdio.h>
 
-// Desafio de Xadrez - MateCheck
-// Este código inicial serve como base para o desenvolvimento do sistema de movimentação das peças de xadrez.
-// O objetivo é utilizar estruturas de repetição e funções para determinar os limites de movimentação dentro do jogo.
+//Dasafio xadrez - MateCheck
 
 int main() {
-    // Nível Novato - Movimentação das Peças
-    // Sugestão: Declare variáveis constantes para representar o número de casas que cada peça pode se mover.
+    // Tabuleiro vai de 1 até 8 nas linhas e colunas
+    const int MIN_POS = 1;
+    const int MAX_POS = 8;
 
-    // Implementação de Movimentação do Bispo
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação do Bispo em diagonal.
+    // Torre (usando for)
 
-    // Implementação de Movimentação da Torre
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação da Torre para a direita.
+    int casas_torre = 5;
+    int linha_torre = 4;
+    int coluna_torre = 3;
 
-    // Implementação de Movimentação da Rainha
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação da Rainha para a esquerda.
+    printf("=== Movimento da TORRE ===\n");
 
-    // Nível Aventureiro - Movimentação do Cavalo
-    // Sugestão: Utilize loops aninhados para simular a movimentação do Cavalo em L.
-    // Um loop pode representar a movimentação horizontal e outro vertical.
+    for (int i = 1; i <= casas_torre; i++) {
+        if (coluna_torre + 1 > MAX_POS) {
+            printf("Limite do tabuleiro atingido!\n");
+            break;
+        }
+        coluna_torre++;
+        printf("Direita (%d casa) → Posição: (%d, %d)\n", i, linha_torre, coluna_torre);
+    }
 
-    // Nível Mestre - Funções Recursivas e Loops Aninhados
-    // Sugestão: Substitua as movimentações das peças por funções recursivas.
-    // Exemplo: Crie uma função recursiva para o movimento do Bispo.
+    // Bispo (usando while)
 
-    // Sugestão: Implemente a movimentação do Cavalo utilizando loops com variáveis múltiplas e condições avançadas.
-    // Inclua o uso de continue e break dentro dos loops.
+    int casas_bispo = 5;
+    int linha_bispo = 5;
+    int coluna_bispo = 3;
+    int i = 1;
 
+    printf("\n=== Movimento do BISPO ===\n");
+
+    while (i <= casas_bispo) {
+        if (linha_bispo - 1 < MIN_POS || coluna_bispo + 1 > MAX_POS) {
+            printf("Limite do tabuleiro atingido!\n");
+            break;
+        }
+        linha_bispo--;
+        coluna_bispo++;
+        printf("Cima, Direita (%d casa) → Posição: (%d, %d)\n", i, linha_bispo, coluna_bispo);
+        i++;
+    }
+
+    // Rainha (usando do-while)
+    
+    int casas_rainha = 8;
+    int linha_rainha = 3;
+    int coluna_rainha = 8;
+    int j = 1;
+
+    printf("\n=== Movimento da RAINHA ===\n");
+
+    do {
+        if (coluna_rainha - 1 < MIN_POS) {
+            printf("Limite do tabuleiro atingido!\n");
+            break;
+        }
+        coluna_rainha--;
+        printf("Esquerda (%d casa) → Posição: (%d, %d)\n", j, linha_rainha, coluna_rainha);
+        j++;
+    } while (j <= casas_rainha);
+
+    printf("\nSimulação concluída!\n");
     return 0;
 }
